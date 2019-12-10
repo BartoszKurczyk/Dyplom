@@ -15,7 +15,10 @@ namespace OrchestraTuner
     {
         Detector detector = new Detector();
         string _freq="440";
+        double instrument_base_freq = 440.0;
         double double_freq;
+        Bitmap scale, dot, hand;
+        float angle;
         /*public string freq
         {
             get { return _freq; }
@@ -32,6 +35,18 @@ namespace OrchestraTuner
         public Form1()
         {
             InitializeComponent();
+            scale = new Bitmap(@"res\face.png");
+            scaleBox.Image = scale;
+            hand = new Bitmap(@"res\hand.png");
+            dot = new Bitmap(@"res\green_dot.png");
+            scaleBox.Controls.Add(handBox);
+            handBox.Image = hand;
+            handBox.Location = new Point(0, 0);
+            handBox.BackColor = Color.Transparent;
+            handBox.Controls.Add(dotBox);
+            dotBox.Image = dot;
+            dotBox.Location = new Point(0, 0);
+            dotBox.BackColor = Color.Transparent;
 
         }
         /*public void changeText()
@@ -51,12 +66,73 @@ namespace OrchestraTuner
             //thr2.Start();
             
         }
+
+        private void handBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public void inTimer(object sender, System.Timers.ElapsedEventArgs e)
         {
             double_freq=detector.getFundamentalFreq();
             _freq = double_freq.ToString();
             changeTextInTimer();
+            animateGUI();
             //Console.WriteLine(_freq);
+        }
+        public void animateGUI()
+        {
+            float angle;
+            var temp_var = double_freq - instrument_base_freq;
+            if (temp_var < 0.0)
+            {
+                angle = 360.0F + (float)temp_var;
+            }
+            else
+                angle = (float)temp_var;
+
+            if (temp_var > 60.0F)
+            {
+                angle = 60.0F;
+            }
+            else if (temp_var < -60.0F)
+                angle = -60.0F;
+
+            if ((temp_var > 1.0F && temp_var <= 30.0F) || (temp_var < -1.0F && temp_var >= -30.0F))
+            {
+                dot = new Bitmap(@"res\yellow_dot.png");
+                dotBox.Image = dot;
+            }
+            else if (temp_var > 30.0F || temp_var < -30.0F) 
+            {
+                dot = new Bitmap(@"res\red_dot.png");
+                dotBox.Image = dot;
+            }
+            else
+            {
+                dot = new Bitmap(@"res\green_dot.png");
+                dotBox.Image = dot;
+            }
+
+
+            Console.WriteLine(angle);
+            Bitmap temp_hand = rotateImage(hand, angle);
+            handBox.Image = temp_hand;
+            
+        }
+        private Bitmap rotateImage(Bitmap rotateMe, float angle)
+        {
+            Bitmap rotatedImage = new Bitmap(rotateMe.Width, rotateMe.Height);
+
+            using (Graphics g = Graphics.FromImage(rotatedImage))
+            {
+                g.TranslateTransform(rotateMe.Width / 2, rotateMe.Height / 2);
+                g.RotateTransform(angle);
+                g.TranslateTransform(-rotateMe.Width / 2, -rotateMe.Height / 2);
+                g.DrawImage(rotateMe, new Point(0, 0));
+            }
+
+            return rotatedImage;
         }
         public void calculateInBackground()
         {
@@ -78,7 +154,7 @@ namespace OrchestraTuner
             Timer*/
             Thread.Sleep(1200);
             System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 600;
+            timer.Interval = 500;
             timer.Elapsed += inTimer;
             timer.Start();
 

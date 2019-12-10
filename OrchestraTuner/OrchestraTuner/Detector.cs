@@ -99,27 +99,32 @@ namespace OrchestraTuner
             }
             // Mine pitches
             pyinc_pitch_range pitches = pyinc_feed(ptr, SAMPLE_COUNT);
-
+            float ret_ptr=0.0F;
+            int num_of_pitches = 0;
             // Go through and print the pitches
             float* res_ptr = pitches.begin;
-            if (*res_ptr != -1)
+            //if (*res_ptr != -1)
             //Console.WriteLine(*res_ptr);
-            /*while (res_ptr != pitches.end)
+            while (res_ptr != pitches.end)
             {
 
                 if (*res_ptr != -1)
                 {
-                    Console.WriteLine(*res_ptr);
+                    //Console.WriteLine(*res_ptr);
+                    ret_ptr += *res_ptr;
+                    num_of_pitches++;
 
                 }
                 res_ptr++;
             }
+            ret_ptr = ret_ptr / num_of_pitches;
             res_ptr = pitches.begin;
-            if (*res_ptr != -1)
-                Console.WriteLine("------------------------------");*/
+            //if (*res_ptr != -1)
+                //Console.WriteLine("------------------------------");
             // Release the data
             pyinc_clear();
-            return *res_ptr;
+            return ret_ptr;
+            //return *res_ptr;
         }
     }
 }
