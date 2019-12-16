@@ -16,6 +16,7 @@ namespace OrchestraTuner
         Detector detector = new Detector();
         string _freq="440";
         double instrument_base_freq = 440.0;
+        double to_base_440 = 0.0;
         double double_freq;
         Bitmap scale, dot, hand;
         float angle;
@@ -28,10 +29,30 @@ namespace OrchestraTuner
                 changeText();
             }
         }*/
+
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        /*private void Form1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }*/
         public void changeTextInTimer(/*object sender, System.Timers.ElapsedEventArgs e*/)
         {
             richTextBox1.Text = _freq;
         }
+
+
         public Form1()
         {
             InitializeComponent();
@@ -93,10 +114,10 @@ namespace OrchestraTuner
 
             if (temp_var > 60.0F)
             {
-                angle = 60.0F;
+                angle = -65.0F;
             }
             else if (temp_var < -60.0F)
-                angle = -60.0F;
+                angle = -65.0F;
 
             if ((temp_var > 1.0F && temp_var <= 30.0F) || (temp_var < -1.0F && temp_var >= -30.0F))
             {
@@ -120,6 +141,86 @@ namespace OrchestraTuner
             handBox.Image = temp_hand;
             
         }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void dotBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Flute_Click(object sender, EventArgs e)
+        {
+            instrument_base_freq = 880.0+to_base_440;
+        }
+
+        private void AltoSax_Click(object sender, EventArgs e)
+        {
+            instrument_base_freq = 466.164 + to_base_440;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            instrument_base_freq = 440.0 + to_base_440;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            instrument_base_freq = 233.082 + to_base_440;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            instrument_base_freq = 220.0 + to_base_440;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            instrument_base_freq = 116.541 + to_base_440;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            instrument_base_freq = 110.0 + to_base_440;
+        }
+
         private Bitmap rotateImage(Bitmap rotateMe, float angle)
         {
             Bitmap rotatedImage = new Bitmap(rotateMe.Width, rotateMe.Height);
