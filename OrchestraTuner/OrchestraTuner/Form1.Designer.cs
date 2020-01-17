@@ -34,18 +34,21 @@
             this.handBox = new System.Windows.Forms.PictureBox();
             this.dotBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.AltoSax = new System.Windows.Forms.Button();
-            this.Flute = new System.Windows.Forms.Button();
+            this.updateBand = new System.Windows.Forms.Button();
+            this.addBandButton = new System.Windows.Forms.Button();
+            this.deleteInstrumentButton = new System.Windows.Forms.Button();
+            this.addInstrumentButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.instrumentList = new System.Windows.Forms.ListBox();
+            this.bandSelect = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.deleteBandButton = new System.Windows.Forms.Button();
+            this.updateInstrumentButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.scaleBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.handBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dotBox)).BeginInit();
@@ -105,13 +108,16 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.AltoSax);
-            this.panel1.Controls.Add(this.Flute);
+            this.panel1.Controls.Add(this.updateInstrumentButton);
+            this.panel1.Controls.Add(this.deleteBandButton);
+            this.panel1.Controls.Add(this.updateBand);
+            this.panel1.Controls.Add(this.addBandButton);
+            this.panel1.Controls.Add(this.deleteInstrumentButton);
+            this.panel1.Controls.Add(this.addInstrumentButton);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.instrumentList);
+            this.panel1.Controls.Add(this.bandSelect);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -121,89 +127,86 @@
             this.panel1.Size = new System.Drawing.Size(200, 800);
             this.panel1.TabIndex = 4;
             // 
-            // button4
+            // updateBand
             // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(0, 254);
-            this.button4.Margin = new System.Windows.Forms.Padding(0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(200, 32);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "116.541";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.updateBand.Location = new System.Drawing.Point(110, 479);
+            this.updateBand.Name = "updateBand";
+            this.updateBand.Size = new System.Drawing.Size(75, 23);
+            this.updateBand.TabIndex = 9;
+            this.updateBand.Text = "Update";
+            this.updateBand.UseVisualStyleBackColor = true;
+            this.updateBand.Click += new System.EventHandler(this.updateBand_Click);
             // 
-            // button3
+            // addBandButton
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(0, 222);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 32);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "220Hz";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.addBandButton.Location = new System.Drawing.Point(110, 450);
+            this.addBandButton.Name = "addBandButton";
+            this.addBandButton.Size = new System.Drawing.Size(75, 23);
+            this.addBandButton.TabIndex = 8;
+            this.addBandButton.Text = "Add";
+            this.addBandButton.UseVisualStyleBackColor = true;
+            this.addBandButton.Click += new System.EventHandler(this.addBandButton_Click);
             // 
-            // button2
+            // deleteInstrumentButton
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 190);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 32);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "233.082Hz";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.deleteInstrumentButton.Location = new System.Drawing.Point(17, 508);
+            this.deleteInstrumentButton.Name = "deleteInstrumentButton";
+            this.deleteInstrumentButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteInstrumentButton.TabIndex = 7;
+            this.deleteInstrumentButton.Text = "Delete";
+            this.deleteInstrumentButton.UseVisualStyleBackColor = true;
+            this.deleteInstrumentButton.Click += new System.EventHandler(this.deleteInstrumentButton_Click);
             // 
-            // button1
+            // addInstrumentButton
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 158);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 32);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "440.0Hz";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.addInstrumentButton.Location = new System.Drawing.Point(16, 450);
+            this.addInstrumentButton.Name = "addInstrumentButton";
+            this.addInstrumentButton.Size = new System.Drawing.Size(75, 23);
+            this.addInstrumentButton.TabIndex = 6;
+            this.addInstrumentButton.Text = "Add";
+            this.addInstrumentButton.UseVisualStyleBackColor = true;
+            this.addInstrumentButton.Click += new System.EventHandler(this.addInstrumentButton_Click);
             // 
-            // AltoSax
+            // label3
             // 
-            this.AltoSax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AltoSax.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.AltoSax.ForeColor = System.Drawing.Color.White;
-            this.AltoSax.Location = new System.Drawing.Point(0, 126);
-            this.AltoSax.Margin = new System.Windows.Forms.Padding(0);
-            this.AltoSax.Name = "AltoSax";
-            this.AltoSax.Size = new System.Drawing.Size(200, 32);
-            this.AltoSax.TabIndex = 3;
-            this.AltoSax.Text = "466.164Hz";
-            this.AltoSax.UseVisualStyleBackColor = true;
-            this.AltoSax.Click += new System.EventHandler(this.AltoSax_Click);
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(137, 430);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 16);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Bands";
             // 
-            // Flute
+            // label2
             // 
-            this.Flute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Flute.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Flute.ForeColor = System.Drawing.Color.White;
-            this.Flute.Location = new System.Drawing.Point(0, 94);
-            this.Flute.Margin = new System.Windows.Forms.Padding(0);
-            this.Flute.Name = "Flute";
-            this.Flute.Size = new System.Drawing.Size(200, 32);
-            this.Flute.TabIndex = 2;
-            this.Flute.Text = "880Hz";
-            this.Flute.UseVisualStyleBackColor = true;
-            this.Flute.Click += new System.EventHandler(this.Flute_Click);
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(14, 430);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 16);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Instruments";
+            // 
+            // instrumentList
+            // 
+            this.instrumentList.FormattingEnabled = true;
+            this.instrumentList.ItemHeight = 16;
+            this.instrumentList.Location = new System.Drawing.Point(17, 124);
+            this.instrumentList.Name = "instrumentList";
+            this.instrumentList.Size = new System.Drawing.Size(168, 276);
+            this.instrumentList.TabIndex = 3;
+            this.instrumentList.SelectedIndexChanged += new System.EventHandler(this.instrumentList_SelectedIndexChanged);
+            // 
+            // bandSelect
+            // 
+            this.bandSelect.FormattingEnabled = true;
+            this.bandSelect.Location = new System.Drawing.Point(17, 94);
+            this.bandSelect.Name = "bandSelect";
+            this.bandSelect.Size = new System.Drawing.Size(168, 24);
+            this.bandSelect.TabIndex = 2;
+            this.bandSelect.Text = "--Select band--";
+            this.bandSelect.SelectedIndexChanged += new System.EventHandler(this.bandSelect_SelectedIndexChanged);
+            this.bandSelect.Enter += new System.EventHandler(this.bandSelect_Enter);
             // 
             // panel2
             // 
@@ -222,10 +225,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 29);
+            this.label1.Size = new System.Drawing.Size(137, 23);
             this.label1.TabIndex = 8;
             this.label1.Text = "Orchestra Tuner";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel3
             // 
@@ -263,19 +265,25 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // button5
+            // deleteBandButton
             // 
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Impact", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(0, 384);
-            this.button5.Margin = new System.Windows.Forms.Padding(0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(200, 32);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "116.541";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.deleteBandButton.Location = new System.Drawing.Point(110, 508);
+            this.deleteBandButton.Name = "deleteBandButton";
+            this.deleteBandButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteBandButton.TabIndex = 10;
+            this.deleteBandButton.Text = "Delete";
+            this.deleteBandButton.UseVisualStyleBackColor = true;
+            this.deleteBandButton.Click += new System.EventHandler(this.deleteBandButton_Click);
+            // 
+            // updateInstrumentButton
+            // 
+            this.updateInstrumentButton.Location = new System.Drawing.Point(17, 479);
+            this.updateInstrumentButton.Name = "updateInstrumentButton";
+            this.updateInstrumentButton.Size = new System.Drawing.Size(75, 23);
+            this.updateInstrumentButton.TabIndex = 11;
+            this.updateInstrumentButton.Text = "Update";
+            this.updateInstrumentButton.UseVisualStyleBackColor = true;
+            this.updateInstrumentButton.Click += new System.EventHandler(this.updateInstrumentButton_Click);
             // 
             // Form1
             // 
@@ -294,12 +302,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Click += new System.EventHandler(this.Form1_Click_1);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.scaleBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.handBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dotBox)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -321,13 +329,16 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Flute;
-        private System.Windows.Forms.Button AltoSax;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox bandSelect;
+        private System.Windows.Forms.ListBox instrumentList;
+        private System.Windows.Forms.Button updateBand;
+        private System.Windows.Forms.Button addBandButton;
+        private System.Windows.Forms.Button deleteInstrumentButton;
+        private System.Windows.Forms.Button addInstrumentButton;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button deleteBandButton;
+        private System.Windows.Forms.Button updateInstrumentButton;
     }
 }
 

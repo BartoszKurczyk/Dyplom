@@ -10,9 +10,10 @@ using System.Threading;
 using System.Windows.Forms;
 
 namespace OrchestraTuner
-{
-    public partial class Form1 : Form
+{   public partial class Form1 : Form
     {
+        public static InstrumentsDBControler instrumentsDB = new InstrumentsDBControler();
+        public static BandDBControler bandsDB = new BandDBControler();
         Detector detector = new Detector();
         string _freq="440";
         double instrument_base_freq = 440.0;
@@ -55,7 +56,13 @@ namespace OrchestraTuner
 
         public Form1()
         {
+            
+            
             InitializeComponent();
+            instrumentsDB.initializeDB();
+            bandsDB.initializeDB();
+            bandSelect.Text = bandsDB.bands.First().getName();
+            refreshInstruments();
             scale = new Bitmap(@"res\face.png");
             scaleBox.Image = scale;
             hand = new Bitmap(@"res\hand.png");
@@ -68,6 +75,7 @@ namespace OrchestraTuner
             dotBox.Image = dot;
             dotBox.Location = new Point(0, 0);
             dotBox.BackColor = Color.Transparent;
+            
 
         }
         /*public void changeText()
@@ -156,15 +164,6 @@ namespace OrchestraTuner
 
         }
 
-        private void Form1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -176,49 +175,92 @@ namespace OrchestraTuner
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Flute_Click(object sender, EventArgs e)
-        {
-            instrument_base_freq = 880.0+to_base_440;
-        }
-
-        private void AltoSax_Click(object sender, EventArgs e)
-        {
-            instrument_base_freq = 466.164 + to_base_440;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            instrument_base_freq = 440.0 + to_base_440;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            instrument_base_freq = 233.082 + to_base_440;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            instrument_base_freq = 220.0 + to_base_440;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            instrument_base_freq = 116.541 + to_base_440;
-        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void bandSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            instrument_base_freq = 110.0 + to_base_440;
+            refreshInstruments();
+        }
+
+        private void bandSelect_Enter(object sender, EventArgs e)
+        {
+            refreshBand();
+        }
+        public void refreshBand()
+        {
+            bandSelect.Items.Clear();
+            foreach (var band in bandsDB.bands)
+            {
+                bandSelect.Items.Add(band.getName());
+            }
+        }
+        public void refreshInstruments()
+        {
+            string bandName = bandSelect.Text.ToString();
+            var instruments_to_display = bandsDB.bands.Find(x => x.getName().Equals(bandName)).GetInstruments();
+            instrumentList.Items.Clear();
+            foreach (var instrument in instruments_to_display)
+            {
+                instrumentList.Items.Add(instrument.getName());
+            }
+            instrumentList.SelectedIndex = 0;
+
+        }
+
+        private void instrumentList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            instrument_base_freq = instrumentsDB.instruments.Find(x => x.getName().Equals(instrumentList.SelectedItem.ToString())).getFreq();
+        }
+
+        private void addInstrumentButton_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
+        }
+
+        private void deleteInstrumentButton_Click(object sender, EventArgs e)
+        {
+            Form3 f3 = new Form3();
+            f3.ShowDialog();
+            //MessageBox.Show("coś dziwnego!!!1");
+            
+            refreshInstruments();
+        }
+
+        private void addBandButton_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4();
+            f4.ShowDialog();
+        }
+
+        private void updateBand_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4(bandSelect.Text.ToString(), bandsDB.bands.Find(x => x.getName().Equals(bandSelect.Text.ToString())).GetInstruments());
+            f4.ShowDialog();
+            bandSelect.Text = bandSelect.Text = bandsDB.bands.First().getName();
+            refreshBand();
+            refreshInstruments();
+        }
+
+        private void deleteBandButton_Click(object sender, EventArgs e)
+        {
+            Form5 f5 = new Form5(bandsDB.bands.Find(x => x.getName().Equals(bandSelect.Text.ToString())).getId(), bandSelect.Text.ToString());
+            f5.ShowDialog();
+            bandSelect.Text = bandSelect.Text = bandsDB.bands.First().getName();
+            refreshBand();
+        }
+
+        private void updateInstrumentButton_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2(instrumentList.SelectedItem.ToString(),instrumentsDB.instruments.Find(x => x.getName().Equals(instrumentList.SelectedItem.ToString())).getFreq());
+            f2.ShowDialog();
+            bandSelect.Text = bandSelect.Text = bandsDB.bands.First().getName();
+            refreshBand();
+            refreshInstruments();
         }
 
         private Bitmap rotateImage(Bitmap rotateMe, float angle)

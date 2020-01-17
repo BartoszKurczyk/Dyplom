@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base>
+  <bands>
+    <band id="0">
+      <name>Sample</name>
+      <instrument>0</instrument>
+      <instrument>1</instrument>
+      <instrument>2</instrument>
+      <instrument>3</instrument>
+      <instrument>4</instrument>
+      <instrument>5</instrument>
+      <instrument>6</instrument>
+      <instrument>7</instrument>
+      <instrument>8</instrument>
+      <instrument>9</instrument>
+    </band>
+    <band id="1">
+      <name>Sample2</name>
+      <instrument>1</instrument>
+      <instrument>5</instrument>
+    </band>
+  </bands>
+</base>

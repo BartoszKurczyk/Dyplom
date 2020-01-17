@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base>
+  <instruments>
+    <instrument id="0">
+      <name>Flet</name>
+      <freq>880</freq>
+    </instrument>
+    <instrument id="1">
+      <name>Saksofon Altowy</name>
+      <freq>440</freq>
+    </instrument>
+    <instrument id="2">
+      <name>Saksofon Tenorowy</name>
+      <freq>220</freq>
+    </instrument>
+    <instrument id="3">
+      <name>Saksofon Barytonowy</name>
+      <freq>110</freq>
+    </instrument>
+    <instrument id="4">
+      <name>Trąbka</name>
+      <freq>466.164</freq>
+    </instrument>
+    <instrument id="5">
+      <name>Melofon</name>
+      <freq>233.082</freq>
+    </instrument>
+    <instrument id="6">
+      <name>Waltornia</name>
+      <freq>233.083</freq>
+    </instrument>
+    <instrument id="7">
+      <name>Puzon Tenorowy</name>
+      <freq>233.082</freq>
+    </instrument>
+    <instrument id="8">
+      <name>Eufonium</name>
+      <freq>233.082</freq>
+    </instrument>
+    <instrument id="9">
+      <name>Tuba</name>
+      <freq>116.541</freq>
+    </instrument>
+  </instruments>
+</base>
