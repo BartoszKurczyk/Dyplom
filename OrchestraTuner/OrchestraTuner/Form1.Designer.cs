@@ -34,6 +34,12 @@
             this.handBox = new System.Windows.Forms.PictureBox();
             this.dotBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.freqLabel = new System.Windows.Forms.Label();
+            this.baseFreqLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.baseFreqTrackBar = new System.Windows.Forms.TrackBar();
+            this.updateInstrumentButton = new System.Windows.Forms.Button();
+            this.deleteBandButton = new System.Windows.Forms.Button();
             this.updateBand = new System.Windows.Forms.Button();
             this.addBandButton = new System.Windows.Forms.Button();
             this.deleteInstrumentButton = new System.Windows.Forms.Button();
@@ -47,12 +53,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.deleteBandButton = new System.Windows.Forms.Button();
-            this.updateInstrumentButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.scaleBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.handBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dotBox)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.baseFreqTrackBar)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -61,10 +68,12 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.BackColor = System.Drawing.Color.Silver;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 719);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.richTextBox1.Size = new System.Drawing.Size(197, 35);
             this.richTextBox1.TabIndex = 0;
@@ -108,6 +117,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.baseFreqLabel);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.baseFreqTrackBar);
             this.panel1.Controls.Add(this.updateInstrumentButton);
             this.panel1.Controls.Add(this.deleteBandButton);
             this.panel1.Controls.Add(this.updateBand);
@@ -126,6 +139,65 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 800);
             this.panel1.TabIndex = 4;
+            // 
+            // freqLabel
+            // 
+            this.freqLabel.AutoSize = true;
+            this.freqLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.freqLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.freqLabel.Location = new System.Drawing.Point(484, 124);
+            this.freqLabel.Name = "freqLabel";
+            this.freqLabel.Size = new System.Drawing.Size(64, 25);
+            this.freqLabel.TabIndex = 15;
+            this.freqLabel.Text = "label5";
+            // 
+            // baseFreqLabel
+            // 
+            this.baseFreqLabel.AutoSize = true;
+            this.baseFreqLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.baseFreqLabel.Location = new System.Drawing.Point(81, 598);
+            this.baseFreqLabel.Name = "baseFreqLabel";
+            this.baseFreqLabel.Size = new System.Drawing.Size(46, 17);
+            this.baseFreqLabel.TabIndex = 14;
+            this.baseFreqLabel.Text = "label5";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Location = new System.Drawing.Point(14, 598);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 17);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Base freq: ";
+            // 
+            // baseFreqTrackBar
+            // 
+            this.baseFreqTrackBar.Location = new System.Drawing.Point(17, 559);
+            this.baseFreqTrackBar.Name = "baseFreqTrackBar";
+            this.baseFreqTrackBar.Size = new System.Drawing.Size(168, 56);
+            this.baseFreqTrackBar.TabIndex = 12;
+            this.baseFreqTrackBar.ValueChanged += new System.EventHandler(this.baseFreqTrackBar_ValueChanged);
+            // 
+            // updateInstrumentButton
+            // 
+            this.updateInstrumentButton.Location = new System.Drawing.Point(17, 479);
+            this.updateInstrumentButton.Name = "updateInstrumentButton";
+            this.updateInstrumentButton.Size = new System.Drawing.Size(75, 23);
+            this.updateInstrumentButton.TabIndex = 11;
+            this.updateInstrumentButton.Text = "Update";
+            this.updateInstrumentButton.UseVisualStyleBackColor = true;
+            this.updateInstrumentButton.Click += new System.EventHandler(this.updateInstrumentButton_Click);
+            // 
+            // deleteBandButton
+            // 
+            this.deleteBandButton.Location = new System.Drawing.Point(110, 508);
+            this.deleteBandButton.Name = "deleteBandButton";
+            this.deleteBandButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteBandButton.TabIndex = 10;
+            this.deleteBandButton.Text = "Delete";
+            this.deleteBandButton.UseVisualStyleBackColor = true;
+            this.deleteBandButton.Click += new System.EventHandler(this.deleteBandButton_Click);
             // 
             // updateBand
             // 
@@ -173,7 +245,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Location = new System.Drawing.Point(137, 430);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 16);
+            this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Bands";
             // 
@@ -183,7 +255,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(14, 430);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 16);
+            this.label2.Size = new System.Drawing.Size(81, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Instruments";
             // 
@@ -225,7 +297,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 23);
+            this.label1.Size = new System.Drawing.Size(173, 29);
             this.label1.TabIndex = 8;
             this.label1.Text = "Orchestra Tuner";
             // 
@@ -265,25 +337,27 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // deleteBandButton
+            // label5
             // 
-            this.deleteBandButton.Location = new System.Drawing.Point(110, 508);
-            this.deleteBandButton.Name = "deleteBandButton";
-            this.deleteBandButton.Size = new System.Drawing.Size(75, 23);
-            this.deleteBandButton.TabIndex = 10;
-            this.deleteBandButton.Text = "Delete";
-            this.deleteBandButton.UseVisualStyleBackColor = true;
-            this.deleteBandButton.Click += new System.EventHandler(this.deleteBandButton_Click);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(206, 124);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(258, 25);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Instrument tuning frequency:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // updateInstrumentButton
+            // label6
             // 
-            this.updateInstrumentButton.Location = new System.Drawing.Point(17, 479);
-            this.updateInstrumentButton.Name = "updateInstrumentButton";
-            this.updateInstrumentButton.Size = new System.Drawing.Size(75, 23);
-            this.updateInstrumentButton.TabIndex = 11;
-            this.updateInstrumentButton.Text = "Update";
-            this.updateInstrumentButton.UseVisualStyleBackColor = true;
-            this.updateInstrumentButton.Click += new System.EventHandler(this.updateInstrumentButton_Click);
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(3, 692);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(162, 25);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Heard frequency:";
             // 
             // Form1
             // 
@@ -291,6 +365,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(981, 800);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.freqLabel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dotBox);
@@ -308,12 +384,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dotBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.baseFreqTrackBar)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -339,6 +417,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button deleteBandButton;
         private System.Windows.Forms.Button updateInstrumentButton;
+        private System.Windows.Forms.TrackBar baseFreqTrackBar;
+        private System.Windows.Forms.Label baseFreqLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label freqLabel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 

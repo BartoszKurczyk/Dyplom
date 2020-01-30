@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +10,8 @@ using System.Windows.Forms;
 
 namespace OrchestraTuner
 {
-    public partial class Form4 : Form
+    
+	public partial class Form4 : Form
     {
         List<Instrument> all_instruments = new List<Instrument>();
         List<Instrument> instruments_toBand = new List<Instrument>();
@@ -20,6 +21,7 @@ namespace OrchestraTuner
         {
 
             InitializeComponent();
+            this.Location = new Point(550, 430);
             all_instruments = Form1.instrumentsDB.instruments;
             foreach (var instr in all_instruments)
             {
@@ -31,6 +33,7 @@ namespace OrchestraTuner
         {
 
             InitializeComponent();
+            this.Location = new Point(550, 430);
             submitButton.Click -= submitButton_Click;
             submitButton.Click += submitButton_ClickUpdate;
 
@@ -164,3 +167,4 @@ namespace OrchestraTuner
         }
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,12 +10,14 @@ using System.Windows.Forms;
 
 namespace OrchestraTuner
 {
-    public partial class Form3 : Form
+    
+	public partial class Form3 : Form
     {
         public Form3()
         {
             InitializeComponent();
-            foreach(var instrument in Form1.instrumentsDB.instruments)
+            this.Location = new Point(550, 430);
+            foreach (var instrument in Form1.instrumentsDB.instruments)
             {
                 instrumentsList.Items.Add(instrument.getName());
             }
@@ -41,3 +43,4 @@ namespace OrchestraTuner
         }
     }
 }
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace OrchestraTuner
 {
-    public class InstrumentsDBControler
+    
+	public class InstrumentsDBControler
     {
-        string filename = "baza.xml";
+        string filename = "instruments.xml";
         Instrument temp_instrument;
         public List<Instrument> instruments;
         int biggest_id;
@@ -110,4 +111,5 @@ namespace OrchestraTuner
         }
     }
 }
+
 

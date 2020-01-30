@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,8 @@ using System.Xml.Linq;
 
 namespace OrchestraTuner
 {
-    public class BandDBControler
+    
+	public class BandDBControler
     {
         string filename = "bands.xml";
         Band temp_band;
@@ -134,4 +135,5 @@ namespace OrchestraTuner
         }
     }
 }
+
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +10,8 @@ using System.Windows.Forms;
 
 namespace OrchestraTuner
 {
-    public partial class Form2 : Form
+    
+	public partial class Form2 : Form
     {
         bool valid_name = false, valid_freq=false;
         string name;
@@ -18,11 +19,14 @@ namespace OrchestraTuner
         public Form2()
         {
             InitializeComponent();
+            this.Location = new Point(550, 430);
         }
         public Form2(string name, double freq)
         {
             
             InitializeComponent();
+            label3.Text = "Update instrument";
+            this.Location = new Point(550, 430);
             valid_name = true;
             valid_freq = true;
             submitButton.Click -= submitButton_Click;
@@ -102,6 +106,10 @@ namespace OrchestraTuner
             this.Close();
         }
 
+        private void Form2_Load(object sender, EventArgs e)
+        {
+        }
+
         private void nameTextBox_Validating(object sender, CancelEventArgs e)
         {
             if(string.IsNullOrEmpty(nameTextBox.Text.ToString()))
@@ -119,3 +127,4 @@ namespace OrchestraTuner
         }
     }
 }
+

@@ -16,6 +16,21 @@ namespace OrchestraTuner
         private int BUFFERSIZE = 44100;
         
         public BufferedWaveProvider bwp;
+        [StructLayout(LayoutKind.Sequential)]
+        unsafe public struct pyinc_pitch_range
+        {
+            public float* begin;
+            public float* end;
+        }
+
+        [DllImport("\\LibPyin.dll")]
+        static extern void pyinc_init(int sample_rate, int block_size, int step_size);
+
+        [DllImport("\\LibPyin.dll")]
+        unsafe static extern pyinc_pitch_range pyinc_feed(float* data, int size);
+
+        [DllImport("\\LibPyin.dll")]
+        unsafe static extern void pyinc_clear();
 
         void AudioDataAvailable(object sender, WaveInEventArgs e)
         {
@@ -64,21 +79,8 @@ namespace OrchestraTuner
             return freq;
         }
 
-        [StructLayout(LayoutKind.Sequential)]
-        unsafe public struct pyinc_pitch_range
-        {
-            public float* begin;
-            public float* end;
-        }
-
-        [DllImport("\\LibPyin.dll")]
-        static extern void pyinc_init(int sample_rate, int block_size, int step_size);
-
-        [DllImport("\\LibPyin.dll")]
-        unsafe static extern pyinc_pitch_range pyinc_feed(float* data, int size);
-
-        [DllImport("\\LibPyin.dll")]
-        unsafe static extern void pyinc_clear();
+        
+        
         unsafe public float pitchDetect(double[] pre_ptr, int sample_count)
         {
             int SAMPLE_RATE = RATE;
@@ -110,7 +112,7 @@ namespace OrchestraTuner
 
                 if (*res_ptr != -1)
                 {
-                    //Console.WriteLine(*res_ptr);
+                    
                     ret_ptr += *res_ptr;
                     num_of_pitches++;
 
@@ -119,12 +121,11 @@ namespace OrchestraTuner
             }
             ret_ptr = ret_ptr / num_of_pitches;
             res_ptr = pitches.begin;
-            //if (*res_ptr != -1)
-                //Console.WriteLine("------------------------------");
+            
             // Release the data
             pyinc_clear();
             return ret_ptr;
-            //return *res_ptr;
+            
         }
     }
 }

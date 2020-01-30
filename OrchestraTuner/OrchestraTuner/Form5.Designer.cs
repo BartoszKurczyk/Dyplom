@@ -36,9 +36,10 @@
             // text
             // 
             this.text.AutoSize = true;
+            this.text.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.text.Location = new System.Drawing.Point(12, 9);
             this.text.Name = "text";
-            this.text.Size = new System.Drawing.Size(45, 16);
+            this.text.Size = new System.Drawing.Size(46, 17);
             this.text.TabIndex = 0;
             this.text.Text = "label1";
             // 
@@ -66,13 +67,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(484, 81);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.text);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form5";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form5";
             this.ResumeLayout(false);
             this.PerformLayout();

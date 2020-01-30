@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace OrchestraTuner
 {
-    public partial class Form5 : Form
+    
+	public partial class Form5 : Form
     {
         private int id;
         private string name;
         public Form5(int id, string name)
         {
             InitializeComponent();
+            this.Location = new Point(550, 430);
             if (id == 0)
             {
                 //MessageBox.Show("Base band cannot be deleted");
@@ -29,7 +31,7 @@ namespace OrchestraTuner
                 this.id = id;
                 this.name = name;
                 string txt = "Do you want to delete the band: ";
-                txt += id.ToString(); ;
+                txt += name.ToString();
                 text.Text = txt;
             }
             
@@ -51,3 +53,4 @@ namespace OrchestraTuner
 
 
 //Do you want to delete the band:
+

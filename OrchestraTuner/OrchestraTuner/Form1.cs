@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +10,8 @@ using System.Threading;
 using System.Windows.Forms;
 
 namespace OrchestraTuner
-{   public partial class Form1 : Form
+{   
+	public partial class Form1 : Form
     {
         public static InstrumentsDBControler instrumentsDB = new InstrumentsDBControler();
         public static BandDBControler bandsDB = new BandDBControler();
@@ -18,6 +19,7 @@ namespace OrchestraTuner
         string _freq="440";
         double instrument_base_freq = 440.0;
         double to_base_440 = 0.0;
+        double base_freq = 0.0;
         double double_freq;
         Bitmap scale, dot, hand;
         float angle;
@@ -59,9 +61,12 @@ namespace OrchestraTuner
             
             
             InitializeComponent();
+            
             instrumentsDB.initializeDB();
             bandsDB.initializeDB();
+            
             bandSelect.Text = bandsDB.bands.First().getName();
+
             refreshInstruments();
             scale = new Bitmap(@"res\face.png");
             scaleBox.Image = scale;
@@ -75,7 +80,15 @@ namespace OrchestraTuner
             dotBox.Image = dot;
             dotBox.Location = new Point(0, 0);
             dotBox.BackColor = Color.Transparent;
+            baseFreqTrackBar.Minimum = 400;
+            baseFreqTrackBar.Maximum = 480;
+            baseFreqTrackBar.Value = 440;
+            base_freq = 440;
             
+            baseFreqLabel.Text = base_freq.ToString()+" Hz";
+
+
+
 
         }
         /*public void changeText()
@@ -104,7 +117,7 @@ namespace OrchestraTuner
         public void inTimer(object sender, System.Timers.ElapsedEventArgs e)
         {
             double_freq=detector.getFundamentalFreq();
-            _freq = double_freq.ToString();
+            _freq = String.Format("{0:0.00}", double_freq);//double_freq.ToString();
             changeTextInTimer();
             animateGUI();
             //Console.WriteLine(_freq);
@@ -112,7 +125,7 @@ namespace OrchestraTuner
         public void animateGUI()
         {
             float angle;
-            var temp_var = double_freq - instrument_base_freq;
+            var temp_var = double_freq - (instrument_base_freq);
             if (temp_var < 0.0)
             {
                 angle = 360.0F + (float)temp_var;
@@ -208,12 +221,17 @@ namespace OrchestraTuner
                 instrumentList.Items.Add(instrument.getName());
             }
             instrumentList.SelectedIndex = 0;
+            
+            
 
         }
 
         private void instrumentList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            instrument_base_freq = instrumentsDB.instruments.Find(x => x.getName().Equals(instrumentList.SelectedItem.ToString())).getFreq();
+            instrument_base_freq = instrumentsDB.instruments.Find(x => x.getName().Equals(instrumentList.SelectedItem.ToString())).getFreq()+to_base_440;
+            //changeBaseFreq();
+            freqLabel.Text = instrument_base_freq.ToString()+" Hz";
+            //changeBaseFreq();
         }
 
         private void addInstrumentButton_Click(object sender, EventArgs e)
@@ -263,6 +281,24 @@ namespace OrchestraTuner
             refreshInstruments();
         }
 
+        private void baseFreqTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            base_freq = (double)baseFreqTrackBar.Value;
+            baseFreqLabel.Text = base_freq.ToString();
+            to_base_440 = base_freq - 440;
+            freqLabel.Text = instrument_base_freq.ToString();
+            
+            Console.WriteLine(to_base_440);
+            refreshInstruments();
+            
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private Bitmap rotateImage(Bitmap rotateMe, float angle)
         {
             Bitmap rotatedImage = new Bitmap(rotateMe.Width, rotateMe.Height);
@@ -302,6 +338,6 @@ namespace OrchestraTuner
             timer.Start();
 
         }
-        
     }
 }
+
